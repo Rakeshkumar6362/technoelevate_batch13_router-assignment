@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import { routing } from './router';
+import { useState } from 'react';
+import loginContext from './components/context/logincontext';
+import {rout} from './components/router2'
+
 
 function App() {
+  const [login, setlogin] = useState(true)
+  const isloggedin =()=>{
+    setlogin(!login)
+  }
+  const data ={login , isloggedin}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+  <loginContext.Provider value={data}>
+    {login ? <>{routing}</>:<>{rout}</>}
+    </loginContext.Provider>  
+   </>
   );
 }
 
